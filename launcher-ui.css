@@ -69,15 +69,13 @@
   gap: .55em;
 }
 
-.isle-code-label::before {
-  content: "";
-  display: inline-block;
+.windows-download-icon {
+  display: block;
   width: 1em;
   height: 1em;
   flex: none;
-  background: currentColor;
-  -webkit-mask: url("./assets/icons/windows.svg") center / contain no-repeat;
-  mask: url("./assets/icons/windows.svg") center / contain no-repeat;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .creators .creator {
@@ -153,6 +151,8 @@
 }
 
 .faq-item {
+  position: relative;
+  z-index: 1;
   min-width: 0;
   overflow: hidden;
   border-radius: 14px;
@@ -170,6 +170,7 @@
 
 .faq-card > .creator-glass {
   z-index: -1;
+  pointer-events: none;
 }
 
 .faq-question {
@@ -190,6 +191,8 @@
   line-height: 1.3;
   cursor: pointer;
   text-align: left;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .faq-question:focus-visible {

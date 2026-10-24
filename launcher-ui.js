@@ -37,7 +37,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const heroLabel = document.querySelector(".isle-code-label");
-  if (heroLabel) heroLabel.textContent = "Download";
+  if (heroLabel) {
+    heroLabel.replaceChildren(
+      Object.assign(document.createElement("img"), {
+        src: "./assets/icons/windows.svg",
+        alt: "",
+        className: "windows-download-icon",
+      }),
+      document.createTextNode("Download"),
+    );
+  }
+
+  const launcherCard = document.querySelector('[data-isle][data-mnemonic="project-neo-launcher"]');
+  launcherCard?.querySelector(".isle-by")?.remove();
+  const launcherImage = launcherCard?.querySelector(".isle-img");
+  if (launcherImage) {
+    launcherImage.alt = "Project Neo launcher showing its classic Fortnite season selection screen";
+    launcherImage.removeAttribute("aria-hidden");
+  }
 
   const lobbyCopy = document.querySelector('#lobbies-title')?.closest(".chapter")?.querySelectorAll(".chapter-copy > p");
   if (lobbyCopy?.length >= 3) {
@@ -109,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lobbies.insertAdjacentHTML("afterend", `
       <section class="chapter" aria-labelledby="og-multiplayer-title">
         <figure class="float" data-float data-par="-46">
-          <img src="./assets/story/og_landscape.webp" alt="A classic Fortnite landscape from Project Neo" width="1920" height="1080" loading="lazy" decoding="async">
+          <img src="./assets/story/og_landscape.webp" alt="Classic Chapter 1 Fortnite island landscape in Project Neo" width="1920" height="1080" loading="lazy" decoding="async">
         </figure>
         <div class="chapter-copy" data-in-group data-par="30">
           <h2 class="chapter-title" id="og-multiplayer-title">OG Fortnite multiplayer</h2>
@@ -149,6 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
     section.addEventListener("click", (event) => {
       const button = event.target.closest(".faq-question");
       if (!button) return;
+      event.preventDefault();
+      event.stopPropagation();
       const expanded = button.getAttribute("aria-expanded") === "true";
       const item = button.closest(".faq-item");
       if (!item) return;
