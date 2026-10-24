@@ -37,6 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const heroLabel = document.querySelector(".isle-code-label");
+  const setDownloadLabel = () => {
+    const label = document.querySelector('[data-isle][data-mnemonic="project-neo-launcher"] .isle-code-label');
+    if (!label || label.querySelector(".windows-download-icon")) return;
+    label.replaceChildren(
+      Object.assign(document.createElement("img"), {
+        src: "./assets/icons/windows.svg",
+        alt: "",
+        className: "windows-download-icon",
+      }),
+      document.createTextNode("Download"),
+    );
+  };
   if (heroLabel) {
     heroLabel.replaceChildren(
       Object.assign(document.createElement("img"), {
@@ -49,12 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const launcherCard = document.querySelector('[data-isle][data-mnemonic="project-neo-launcher"]');
-  launcherCard?.querySelector(".isle-by")?.remove();
-  const launcherImage = launcherCard?.querySelector(".isle-img");
-  if (launcherImage) {
-    launcherImage.alt = "Project Neo launcher showing its classic Fortnite season selection screen";
-    launcherImage.removeAttribute("aria-hidden");
-  }
+  const cleanLauncherCard = () => {
+    const card = document.querySelector('[data-isle][data-mnemonic="project-neo-launcher"]');
+    card?.querySelector(".isle-by")?.remove();
+    const image = card?.querySelector(".isle-img");
+    if (image) {
+      image.alt = "Project Neo launcher showing its classic Fortnite season selection screen";
+      image.removeAttribute("aria-hidden");
+    }
+    setDownloadLabel();
+  };
+  cleanLauncherCard();
+  const heroTrack = document.querySelector("[data-rail-track]");
+  if (heroTrack) new MutationObserver(cleanLauncherCard).observe(heroTrack, { childList: true, subtree: true });
 
   const lobbyCopy = document.querySelector('#lobbies-title')?.closest(".chapter")?.querySelectorAll(".chapter-copy > p");
   if (lobbyCopy?.length >= 3) {
