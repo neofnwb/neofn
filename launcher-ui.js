@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const title = document.querySelector(".stage-word");
-  if (title) title.textContent = "Project Neo Launcher";
+  if (title && !title.querySelector(".neo-sr-only")) title.textContent = "PROJECT NEO";
 
   const link = document.querySelector(".nav-download");
   if (link) {

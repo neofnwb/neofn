@@ -201,7 +201,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 28px rgba(255, 255, 255, .18);
-  font-size: min(8vw, 20vh);
+  font-size: min(11vw, 27vh);
   text-transform: uppercase;
 }
 
