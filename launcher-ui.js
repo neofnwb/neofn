@@ -184,33 +184,33 @@ document.addEventListener("DOMContentLoaded", () => {
         </li>`).join("")}
       </ul>
     `;
-    section.addEventListener("click", (event) => {
-      const button = event.target.closest(".faq-question");
-      if (!button) return;
-      event.preventDefault();
-      event.stopPropagation();
-      const expanded = button.getAttribute("aria-expanded") === "true";
-      const item = button.closest(".faq-item");
-      if (!item) return;
-      const current = section.querySelector(".faq-item.is-open");
-      if (current && current !== item) {
-        current.classList.remove("is-open");
-        const currentButton = current.querySelector(".faq-question");
-        const currentAnswer = current.querySelector(".faq-answer-wrap");
-        currentButton?.setAttribute("aria-expanded", "false");
-        if (currentAnswer) {
-          currentAnswer.setAttribute("aria-hidden", "true");
-          currentAnswer.inert = true;
+    section.querySelectorAll(".faq-item").forEach((item) => {
+      item.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        const button = item.querySelector(".faq-question");
+        const expanded = button?.getAttribute("aria-expanded") === "true";
+        const current = section.querySelector(".faq-item.is-open");
+        if (current && current !== item) {
+          current.classList.remove("is-open");
+          current.querySelector(".faq-question")?.setAttribute("aria-expanded", "false");
+          const currentAnswer = current.querySelector(".faq-answer-wrap");
+          if (currentAnswer) {
+            currentAnswer.setAttribute("aria-hidden", "true");
+            currentAnswer.inert = true;
+          }
         }
-      }
-      const opening = !expanded;
-      item.classList.toggle("is-open", opening);
-      button.setAttribute("aria-expanded", String(opening));
-      const answer = item.querySelector(".faq-answer-wrap");
-      if (answer) {
-        answer.setAttribute("aria-hidden", String(!opening));
-        answer.inert = !opening;
-      }
+
+        const opening = !expanded;
+        item.classList.toggle("is-open", opening);
+        button?.setAttribute("aria-expanded", String(opening));
+        const answer = item.querySelector(".faq-answer-wrap");
+        if (answer) {
+          answer.setAttribute("aria-hidden", String(!opening));
+          answer.inert = !opening;
+        }
+      }, true);
     });
     reviewsSection.after(section);
     import("./astro/Layout.astro_astro_type_script_index_1_lang.C7SCjpzP.js")
