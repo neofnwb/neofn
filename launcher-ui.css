@@ -75,7 +75,7 @@
   height: 1em;
   flex: none;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .creators .creator {

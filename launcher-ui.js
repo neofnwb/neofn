@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
         src: "./assets/icons/windows.svg",
         alt: "",
         className: "windows-download-icon",
+        width: 18,
+        height: 18,
       }),
       document.createTextNode("Download"),
     );
