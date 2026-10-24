@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const title = document.querySelector(".stage-word");
-  if (title) title.textContent = "PROJECT NEO";
+  if (title) title.textContent = "Project Neo Launcher";
 
   const link = document.querySelector(".nav-download");
   if (link) {
@@ -124,7 +124,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const face = card.querySelector(".creator-face");
         const copy = card.querySelector(".creator-maps");
         const badge = card.querySelector(".creator-rating span");
-        if (name) name.textContent = "Neo Player";
+        if (name) {
+          const label = document.createElement("p");
+          label.className = name.className;
+          label.textContent = "Neo Player";
+          name.replaceWith(label);
+        }
         if (face) {
           face.classList.add("creator-face-review");
           face.innerHTML = '<span class="creator-initial">NP</span>';

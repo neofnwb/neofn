@@ -4,7 +4,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 28px rgba(255, 255, 255, .18);
-  font-size: min(11vw, 27vh);
+  font-size: min(8vw, 20vh);
+  text-transform: uppercase;
 }
 
 .nav-group-end .finder,
